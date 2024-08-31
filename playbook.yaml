@@ -1,0 +1,16 @@
+---
+- hosts: all
+  remote_user: ubuntu
+  become: yes # vira root
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present # se não tiver, instala | absent para remover
+        update_cache: yes
+
+    - name: Init nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
